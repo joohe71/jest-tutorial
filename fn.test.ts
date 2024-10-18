@@ -44,3 +44,27 @@ test("유저리스트에 Mike가 있나?", () => {
 test("이거 에러 나나요?", () => {
   expect(() => fn.throwErr()).toThrow("잘못된 접근입니다.");
 });
+
+// 비동기 테스트 => done callback 함수 사용하도록
+test("3초 후에 받아온 이름은 Mike", (done) => {
+  const getName = (name: string) => {
+    expect(name).toBe("Mike");
+    done();
+  };
+  fn.getName(getName);
+});
+
+// resolves, rejects
+test("3초 후에 받아온 나이는 30", () => {
+  //   return fn.getAge().then((age) => {
+  //     expect(age).toBe(30);
+  //   });
+  return expect(fn.getAge()).resolves.toBe(30);
+});
+
+// async await
+test("3초 후에 받아온 나이는 30", async () => {
+  const age = await fn.getAge();
+  expect(age).toBe(30);
+  // await expect(fn.getAge()).resolves.toBe(30)
+});
