@@ -68,3 +68,31 @@ test("3초 후에 받아온 나이는 30", async () => {
   expect(age).toBe(30);
   // await expect(fn.getAge()).resolves.toBe(30)
 });
+
+describe("Car 관련 작업", () => {
+  let car;
+  beforeAll(async () => {
+    car = await fn.connectCarDb();
+  });
+  afterAll(() => {
+    return fn.disConnectCarDb();
+  });
+
+  test("브랜드는 bmw", () => {
+    expect(car.brand).toBe("bmw");
+  });
+});
+let num = 0;
+// test.only는 해당 테스트만 단독 실행 된다.
+// skip은 해당 테스트 스킵
+test("0 더하기 1은 1", () => {
+  expect(fn.add(num, 1)).toBe(1);
+});
+
+test.skip("0 더하기 2는 2", () => {
+  expect(fn.add(num, 2)).toBe(2);
+  num = 10;
+});
+test("0 더하기 3은 3", () => {
+  expect(fn.add(num, 3)).toBe(3);
+});
