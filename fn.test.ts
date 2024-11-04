@@ -82,6 +82,7 @@ describe("Car 관련 작업", () => {
     expect(car.brand).toBe("bmw");
   });
 });
+
 let num = 0;
 // test.only는 해당 테스트만 단독 실행 된다.
 // skip은 해당 테스트 스킵
@@ -95,4 +96,12 @@ test.skip("0 더하기 2는 2", () => {
 });
 test("0 더하기 3은 3", () => {
   expect(fn.add(num, 3)).toBe(3);
+});
+
+const mockFn = jest.fn();
+mockFn.mockReturnValue({ name: "Mike", age: 15 });
+
+test("유저를 만든다", () => {
+  const user = mockFn();
+  expect(user.name).toBe("Mike");
 });

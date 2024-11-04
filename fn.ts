@@ -1,6 +1,9 @@
 export const fn = {
   add: (a: number, b: number) => a + b,
-  makeUser: (name: string, age: number) => ({ name, age }),
+  makeUser: (name: string, age: number) => {
+    console.log("실제 사용자를 만들었습니다.");
+    return { name, age };
+  },
   throwErr: () => {
     throw new Error("에러");
   },
